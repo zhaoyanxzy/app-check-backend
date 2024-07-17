@@ -10,17 +10,17 @@ export const appCheckVerification = async (
 
   if (!appCheckToken) {
     res.status(401);
-    return next("Unauthorized");
+    return next("Unauthorized: No token");
   }
 
   try {
     const appCheckClaims = await getAppCheck().verifyToken(appCheckToken);
-
     // If verifyToken() succeeds, continue with the next middleware
     // function in the stack.
     return next();
   } catch (err) {
+    console.log(">>>>>", err);
     res.status(401);
-    return next("Unauthorized");
+    return next("Unauthorized: Invalid token");
   }
 };

@@ -7,11 +7,11 @@ const PORT = process.env.PORT || 2000;
 const firebaseApp = initializeApp();
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World from Express and TypeScript!");
+  res.send("Appcheck Hello World from Express and TypeScript!");
 });
 
 app.get("/app-check", [appCheckVerification], (req: Request, res: Response) => {
-  res.send("ok");
+  res.send({ isTokenValid: true });
 });
 
 app.listen(PORT, () => {
